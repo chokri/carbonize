@@ -1,6 +1,6 @@
 {
   "name": "carbonize",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Command line interface for Carbone.io",
   "main": "bin/carbonize.js",
   "bin": {
