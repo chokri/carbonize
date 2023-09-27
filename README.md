@@ -22,6 +22,12 @@ carbonize [input-path] [json-data] [output-path]
 - `[json-data]` is the JSON data that will be used to fill in the template.
 - `[output-path]` is the path where the generated DOCX document will be saved.
 
+## Tests
+
+```bash
+npm run test
+```
+
 ### Example
 
 Let's say you have a template file called `template.docx` and JSON data like this:
