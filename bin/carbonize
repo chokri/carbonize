@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+const carbone = require("carbone");
+const fs = require("fs");
+
+function usage() {
+  console.info("Carbonize [input-path] [json-data] [output-path]");
+  console.info("  [input-path]\t\tTemplate in docx format");
+  console.info("  [json-data]\t\tStringified JSON data");
+  console.info("  [output-file]\t\tOutput file in docx format");
+}
+
+if (process.argv.length !== 5) {
+  usage();
+  process.exit(1); // Exit with an error code
+}
+
+const inputPath = process.argv[2];
+const jsonString = process.argv[3];
+const outputPath = process.argv[4];
+
+console.log(`Input Path: ${inputPath}`);
+console.log(`JSON Data: ${jsonString}`);
+console.log(`Output Path: ${outputPath}`);
+
+// Check if the input file exists
+if (!fs.existsSync(inputPath)) {
+  console.error(`Input file "${inputPath}" does not exist.`);
+  process.exit(1); // Exit with an error code
+}
+
+try {
+  const data = JSON.parse(jsonString);
+
+  carbone.render(inputPath, data, {convertTo: 'pdf'}, function (err, result) {
+    if (err) {
+      console.error(err);
+      process.exit(1); // Exit with an error code
+    }
+
+    try {
+      fs.writeFileSync(outputPath, result, "binary");
+      console.log(`Output file saved to: ${outputPath}`);
+      process.exit(0);
+    } catch (writeError) {
+      console.error(`Error writing the output file: ${writeError}`);
+      process.exit(1); // Exit with an error code
+    }
+  });
+} catch (error) {
+  console.error(`Error parsing JSON data: ${error}`);
+  process.exit(1); // Exit with an error code
+}

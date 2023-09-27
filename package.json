@@ -1,0 +1,21 @@
+{
+  "name": "carbone-cli",
+  "version": "1.0.1",
+  "description": "Command line interface for Carbone.io",
+  "main": "bin/carbonize.js",
+  "bin": {
+    "carbone-cli": "./bin/carbone-cli"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": "git@github.com:chokri/carbone-cli.git",
+  "author": "Chokri K <chokri@khalifa.tn>",
+  "license": "MIT",
+  "dependencies": {
+    "carbone": "^3.5.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
